@@ -8,12 +8,14 @@ class AppProductCard extends StatelessWidget {
   final String imagePath;
   final String title;
   final String price;
+  final bool isFavourite;
 
   const AppProductCard({
     super.key,
     required this.imagePath,
     required this.title,
     required this.price,
+    this.isFavourite = false,
   });
 
   @override
@@ -41,12 +43,16 @@ class AppProductCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 top: 12,
                 left: 12,
                 child: Icon(
-                  Icons.favorite_border,
-                  color: AppColors.textBlack,
+                  isFavourite
+                    ? Icons.favorite // Иконка заполнена
+                    : Icons.favorite_border, // Иконка-контур
+                    color: isFavourite
+                    ? Colors.red // Используйте красный цвет (или любой другой, определенный в AppColors)
+                    : AppColors.textBlack,
                 ),
               ),
               const Positioned(
